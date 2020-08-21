@@ -1,0 +1,50 @@
+DROP TABLE IF EXISTS PRODUCTO;
+
+DROP TABLE IF EXISTS ROL;
+
+DROP TABLE IF EXISTS USUARIO;
+
+/*==============================================================*/
+/* Table: PRODUCTO                                              */
+/*==============================================================*/
+CREATE TABLE PRODUCTO
+(
+   PRODUCTO_ID          INT NOT NULL AUTO_INCREMENT,
+   USUARIO_ID           INT,
+   NOMBRE               VARCHAR(100) NOT NULL,
+   COSTO                FLOAT NOT NULL,
+   PRECIO               FLOAT NOT NULL,
+   STOCK                INT,
+   FECHA_MODIFICACION   DATETIME NOT NULL,
+   ESTADO               VARCHAR(2) NOT NULL,
+   PRIMARY KEY (PRODUCTO_ID),
+   FOREIGN KEY (USUARIO_ID) REFERENCES USUARIO(USUARIO_ID)
+);
+
+/*==============================================================*/
+/* Table: ROL                                                   */
+/*==============================================================*/
+CREATE TABLE ROL
+(
+   ROL_ID               INT NOT NULL AUTO_INCREMENT,
+   NOMBRE               VARCHAR(100),
+   PRIMARY KEY (ROL_ID)
+);
+
+/*==============================================================*/
+/* Table: USUARIO                                               */
+/*==============================================================*/
+CREATE TABLE USUARIO
+(
+   USUARIO_ID           INT NOT NULL AUTO_INCREMENT,
+   ROL_ID               INT NOT NULL,
+   NOMBRES              VARCHAR(100),
+   APELLIDOS            VARCHAR(100),
+   CORREO               VARCHAR(100) NOT NULL,
+   USERNAME             VARCHAR(50) NOT NULL,
+   PASSWORD             VARCHAR(50) NOT NULL,
+   ESTADO               VARCHAR(2) NOT NULL,
+   PRIMARY KEY (USUARIO_ID),
+   FOREIGN KEY (ROL_ID) REFERENCES ROL(ROL_ID)
+);
+
