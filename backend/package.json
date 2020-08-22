@@ -14,10 +14,16 @@
   "devDependencies": {
     "nodemon": "^2.0.4"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   },
   "dependencies": {
     "express": "^4.17.1"
 >>>>>>> carlos
+=======
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+>>>>>>> fcf90ede1c5a7b4566e69afc671699a6d29b5cc0
   }
 }
