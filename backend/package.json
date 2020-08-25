@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "inherits": "^2.0.4"
+    "inherits": "^2.0.4",
+    "mysql": "^2.18.1"
   }
 }
