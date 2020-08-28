@@ -1,3 +1,25 @@
+body{
+    background:linear-gradient(to right, rgb(54, 58, 54), rgb(116, 109, 109));
+}
+/* input styles */
+.form-input{
+    width: 100%;
+    padding: 11px 100px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 15px;
+  }
+
+  select{
+    width: 100%;
+    padding: 11px 100px;
+    border-radius: 4px;
+    text-align-last:center;
+  } 
+
 .btn {
     padding: 7px 15px 7px 15px;
     border-radius: 4px;
@@ -27,3 +49,4 @@
     background-color: rgb(247, 46, 11);
     color: #fff;
 }
+
