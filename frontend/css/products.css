@@ -1,0 +1,16 @@
+.flex-container {
+  display: flex;
+  justify-content: center;
+}
+
+.titleProducts {
+  text-align: center;
+  color: azure;
+  padding: 10px;
+}
+
+.inputFormProduct {
+padding: 8px;
+}
+
+
