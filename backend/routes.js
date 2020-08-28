@@ -9,7 +9,11 @@ const productController = require("./controllers/productController");
 route.post("/login" , loginController.register);
 
 //Products
-route.post("/products" , productController.registerProduct);
+route.get("/products" , productController.getView);
+route.post("/products/resgister" , productController.registerProduct);
+route.get("/products/show" , productController.getProducts);
+route.delete("/products/:id_producto" , productController.deleteProducts);
+route.put("/products/:id_producto" , productController.editProduct);
 
 //Users
 route.get("/users" , (req, res) => {
