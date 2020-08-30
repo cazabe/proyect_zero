@@ -49,7 +49,7 @@
       /></div>
       <div class="inputFormProduct">
       <select name="estado" id="pestado">
-        <option>Seleccione</option>
+        <option>Estado</option>
         <option value="A">Activo</option>
         <option value="I">Inactivo</option></select
       ></div>
@@ -58,9 +58,27 @@
 </div>
 <div>
     <h1 class="titleProducts">Tabla de productos</h1>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Costo</th>
+            <th>Precio</th>
+            <th>stock</th>
+            <th>Estado</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody id="table_products">
+
+        </tbody>
+      </table>
+    </div>
+    
 </div>
 
 
-<script src="./js/products.js"></script>
+<script type="module" src="./js/products.js"></script>
   </body>
 </html>
