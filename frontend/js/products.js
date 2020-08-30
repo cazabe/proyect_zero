@@ -1,24 +1,72 @@
+import ajax from "./ajax.js";
 const form = document.getElementById("FormProducts");
+const tableProducts = document.getElementById("table_products");
+
+// const deleteProduct = (id) => {
+//   alert(id);
+// };
+
+
+
+window.editProducts = function(tag){
+const jsonData = JSON.parse(tag.dataset.products);
+console.log(jsonData.NOMBRE);
+
+}
+
+
+const getDataProducts = () => {
+  ajax(
+    "http://localhost:8000/products/show",
+    null,
+    "GET",
+    [["Content-type", "application/json"]],
+    tableProductsResponse,
+    tableProductsResponse
+  );
+};
+
+
+
+window.onload = function () {
+  getDataProducts();
+};
+
+
 
 //Ajax function GET
-window.onload = function () {
-  const request = new XMLHttpRequest();
-  request.open("GET", "http://localhost:8000/products/show", true);
-  request.setRequestHeader("Content-type", "application/json");
-  request.onreadystatechange = function () {
-    // Check if the request is compete and was successful
-    if (this.readyState === 4 && this.status === 200) {
-      const response = this.responseText;
-      const products = JSON.parse(response);
-    //   console.log(products.results[0].NOMBRE);
-      products.results.map((product)=>{
-          console.log(product.NOMBRE);
-      })
-    }
-  };
-  request.send();
-  
-  
+const tableProductsResponse = (res) => {
+  const products = JSON.parse(res);
+  console.log(products.results);
+  console.log(products.results.length);
+  let tr = "";
+  products.results.map((product) => {
+    tr +=
+      "<tr><td>" +
+      product.NOMBRE +
+      "</td><td>" +
+      product.COSTO +
+      "</td><td>" +
+      product.PRECIO +
+      "</td><td>" +
+      product.STOCK +
+      "</td><td>" +
+      product.ESTADO +
+      "</td><td>" +
+      `<button class="btn btn-danger" onclick="deleteProducts(${product.PRODUCTO_ID})">Borrar</button> <button class="btn btn-warning" onclick="editProducts(this)" data-products=\'${JSON.stringify(product)}'\>Editar</button>` +
+      "</td></tr>";
+    tableProducts.innerHTML = tr;
+  });
+};
+
+//callback fuunctions
+const deleteProductsResponse = (res) => {
+  console.log(res);
+};
+
+
+const registerProductsResponse = (res) => {
+  console.log(res);
 };
 
 //Ajax function POST
@@ -33,18 +81,6 @@ const registerData = (e) => {
 
   console.log(nombre, costo, precio, stock, estado);
 
-  // ajax
-  const request = new XMLHttpRequest();
-  request.open("POST", "http://localhost:8000/products/resgister", true);
-  request.setRequestHeader("Content-type", "application/json");
-  request.onreadystatechange = function () {
-    // Check if the request is compete and was successful
-    if (this.readyState === 4 && this.status === 200) {
-      let response = this.responseText;
-      console.log("respuesta http ", response);
-    }
-  };
-
   const product = {
     nombre,
     costo,
@@ -53,8 +89,33 @@ const registerData = (e) => {
     estado,
   };
 
-  request.send(JSON.stringify(product));
+  ajax(
+    "http://localhost:8000/products/resgister",
+    product,
+    "POST",
+    [["Content-type", "application/json"]],
+    registerProductsResponse,
+    registerProductsResponse
+  );
+  getDataProducts();
 };
+
+// Delete producst
+window.deleteProducts = (id)=>{
+  ajax(
+    `http://localhost:8000/products/${id}`,
+    null,
+    "PUT",
+    [["Content-type", "application/json"]],
+    deleteProductsResponse,
+    deleteProductsResponse
+  );
+  getDataProducts();
+}
+
+
+
 
 //events
 form.addEventListener("submit", registerData);
+
