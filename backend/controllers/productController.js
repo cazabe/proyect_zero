@@ -49,10 +49,12 @@ module.exports = {
 
   async deleteProducts(req, res) {
     const { id_producto } = req.params;
+    const changeEstado = "I";
+    const parametroDelete = [changeEstado, id_producto];
     try {
       await con.query(
-        "DELETE FROM producto WHERE PRODUCTO_ID = ?",
-        id_producto,
+        "UPDATE producto SET ESTADO = ? WHERE PRODUCTO_ID = ?",parametroDelete
+        ,
         function (error, results, fields) {
           if (error) throw error;
           console.log("deleted " + results.affectedRows + " rows");
