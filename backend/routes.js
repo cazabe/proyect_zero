@@ -12,7 +12,7 @@ route.post("/login" , loginController.register);
 route.get("/products" , productController.getView);
 route.post("/products/resgister" , productController.registerProduct);
 route.get("/products/show" , productController.getProducts);
-route.delete("/products/:id_producto" , productController.deleteProducts);
+route.put("/products/:id_producto" , productController.deleteProducts);
 route.put("/products/:id_producto" , productController.editProduct);
 
 //Users
