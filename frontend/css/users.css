@@ -1,0 +1,62 @@
+img {
+    cursor: pointer;
+}
+
+.controlPanel {
+    text-align: center;
+    margin-top: 60px;
+}
+
+/*Modals*/
+#createModal {
+    display: none;
+}
+
+#updateModal {
+    display: none;
+}
+
+/*Forms*/
+.form {
+    padding: 15px;
+    margin: 0 auto;
+}
+.form input {
+    padding: 7px;
+    border-radius: 4px;
+    border: solid 1px #f2f2f2;
+}
+.form select{
+    padding: 7px;
+    border-radius: 4px;
+    border: solid 1px #f2f2f2;
+}
+
+/*Users table*/
+.tbl-container {
+    margin-top: 20px;
+    max-height: 300px;
+    overflow: auto;
+    display: inline-block;
+    width: 70%;
+}
+.tbl {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+.tbl th {
+    border-top: solid 1px #f2f2f2;
+    border-bottom: solid 1px #f2f2f2;
+    padding: 5px;
+}
+
+.tbl td {
+    border-bottom: solid 1px #f2f2f2;
+}
+
+.icon {
+    margin: 0px 7px;
+}

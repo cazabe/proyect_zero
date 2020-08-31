@@ -1,38 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/users.css" />
     <link rel="icon" type="image/png" href="img/favicon.png" />
 </head>
+
 <body>
-    <!-- <div class="login">
-        <label>User<input type="text" /></label><br/>
-        <label>Password<input type="Password" /></label>
-    </div>
-
-    <div class="newUser">
-        <a href="#" onclick=""><i class="fa fa-arrow"></i></a>
-    </div>
-
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <p>Some text in the Modal..</p>
+    <header id="header"></header>
+    <section class="controlPanel">
+        <h1>Users</h1>
+        <img src="img/reload.png" onclick="listUsers()" style="margin: 5px;" /><br />
+        <div>
+            <button class="btn btn-primary" id="btnShowCreate">New user</button>
+            <!-- <button class="btn btn-primary" id="btnShowUpdate">Update</button>
+            <button class="btn btn-primary" id="btnCancel">Cancel</button> -->
         </div>
-    </div> -->
-
-    <header>Header</header>
-    <section>
-        <div class="controlPanel">
-            <label>Choose an action</label>
-            <button class="btn btn-primary">Create</button>
+        <div class="tbl-container">
+            <table class="tbl">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Last name</th>
+                        <th>Email address</th>
+                        <th>Role</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody id="tblUsers"></tbody>
+            </table>
         </div>
-        <div></div>
-        <div></div>
     </section>
-    <footer>footer</footer>
+
+    <!--CREATE MODAL-->
+    <div id="createModal" class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Create user</h2>
+        </div>
+        <div class="modal-body">
+            <form class="form">
+                <input type="hidden" data-item="id" />
+                <input type="text" data-item="name" placeholder="Name" />
+                <input type="text" data-item="lName" placeholder="Last name" />
+                <input type="text" data-item="email" placeholder="Email address" />
+                <input type="text" data-item="username" placeholder="username" />
+                <input type="text" data-item="password" placeholder="password" />
+                <select data-item="role">
+                    <option value="0" selected>Choose role</option>
+                    <option value="1">Admin</option>
+                    <option value="2">Normal</option>
+                </select>
+                <div class="modal-buttons">
+                    <button class="btn btn-primary" data-item="btnExecute">Create</button>
+                    <button class="btn btn-danger" data-item="btnClear">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--UPDATE MODAL-->
+    <div id="updateModal" class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Update user</h2>
+        </div>
+        <div class="modal-body">
+            <form class="form">
+                <input type="hidden" data-item="id" />
+                <input type="text" data-item="name" placeholder="Name" />
+                <input type="text" data-item="lName" placeholder="Last name" />
+                <input type="text" data-item="email" placeholder="Email address" />
+                <input type="text" data-item="username" placeholder="Username" />
+                <input type="text" data-item="password" placeholder="Password" />
+                <select data-item="role">
+                    <option value="0" selected>Choose role</option>
+                    <option value="1">Admin</option>
+                    <option value="2">Normal</option>
+                </select>
+                <div class="modal-buttons">
+                    <button class="btn btn-primary" data-item="btnExecute">Update</button>
+                    <button class="btn btn-danger" data-item="btnClear">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="js/usersModule.js"></script>
+    <script type="text/javascript" src="js/users.js"></script>
 </body>
+
 </html>
