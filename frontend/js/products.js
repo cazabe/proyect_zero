@@ -1,19 +1,25 @@
 import ajax from "./ajax.js";
 const form = document.getElementById("FormProducts");
+const formEdit = document.getElementById("FormProductsEdit");
 const tableProducts = document.getElementById("table_products");
 
 // const deleteProduct = (id) => {
 //   alert(id);
 // };
 
-
-
-window.editProducts = function(tag){
-const jsonData = JSON.parse(tag.dataset.products);
-console.log(jsonData.NOMBRE);
-
-}
-
+window.editProducts = function (tag) {
+  const jsonData = JSON.parse(tag.dataset.products);
+  console.log(jsonData.NOMBRE);
+  
+  document.getElementById("id01").style.display = "block";
+  document.getElementById("PnombreEdit").value = jsonData.NOMBRE;
+  document.getElementById("PcostoEdit").value = jsonData.COSTO;
+  document.getElementById("PprecioEdit").value = jsonData.PRECIO;
+  document.getElementById("PstockEdit").value = jsonData.STOCK;
+  document.getElementById("pestadoEdit").value = jsonData.ESTADO;
+  document.getElementById("idProductEdir").value = jsonData.PRODUCTO_ID;
+  
+};
 
 const getDataProducts = () => {
   ajax(
@@ -26,13 +32,9 @@ const getDataProducts = () => {
   );
 };
 
-
-
 window.onload = function () {
   getDataProducts();
 };
-
-
 
 //Ajax function GET
 const tableProductsResponse = (res) => {
@@ -53,17 +55,21 @@ const tableProductsResponse = (res) => {
       "</td><td>" +
       product.ESTADO +
       "</td><td>" +
-      `<button class="btn btn-danger" onclick="deleteProducts(${product.PRODUCTO_ID})">Borrar</button> <button class="btn btn-warning" onclick="editProducts(this)" data-products=\'${JSON.stringify(product)}'\>Editar</button>` +
+      `<button class="btn btn-danger" onclick="deleteProducts(${
+        product.PRODUCTO_ID
+      })"><img class = "trashIcon" src="../img/trash.png"/></button> <button class="btn btn-warning" onclick="editProducts(this)" data-products=\'${JSON.stringify(
+        product
+      )}'\><img class = "trashIcon" src="../img/edit.png"/></button>` +
       "</td></tr>";
     tableProducts.innerHTML = tr;
   });
 };
 
+
 //callback fuunctions
 const deleteProductsResponse = (res) => {
   console.log(res);
 };
-
 
 const registerProductsResponse = (res) => {
   console.log(res);
@@ -100,8 +106,35 @@ const registerData = (e) => {
   getDataProducts();
 };
 
+const editDataProducts = () => {
+  const id_producto = document.getElementById("idProductEdir").value
+  const nombre = document.getElementById("PnombreEdit").value;
+  const costo = document.getElementById("PcostoEdit").value;
+  const precio = document.getElementById("PprecioEdit").value;
+  const stock = document.getElementById("PstockEdit").value;
+  const estado = document.getElementById("pestadoEdit").value;
+
+  console.log("id en edit modal " ,id_producto )
+
+  const editProducts = {
+    nombre,
+    costo,
+    precio,
+    stock,
+    estado
+  }
+  ajax(
+    `http://localhost:8000/products/edit/${id_producto}`,
+    editProducts,
+    "PUT",
+    [["Content-type", "application/json"]],
+    registerProductsResponse,
+    registerProductsResponse
+  );
+};
+
 // Delete producst
-window.deleteProducts = (id)=>{
+window.deleteProducts = (id) => {
   ajax(
     `http://localhost:8000/products/${id}`,
     null,
@@ -111,11 +144,8 @@ window.deleteProducts = (id)=>{
     deleteProductsResponse
   );
   getDataProducts();
-}
-
-
-
+};
 
 //events
 form.addEventListener("submit", registerData);
-
+formEdit.addEventListener("submit", editDataProducts);

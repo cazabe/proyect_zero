@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
     <link rel="stylesheet" type="text/css" href="./css/products.css"/>
     <link rel="icon" type="image/png" href="img/favicon.png" />
@@ -53,11 +54,14 @@
         <option value="A">Activo</option>
         <option value="I">Inactivo</option></select
       ></div>
+      <div class="btnForm">
       <input type="submit" value="Registrar" class="btn btn-primary"/>
+      <a href="http://" class="btn btn-danger">Canceler</a>
+    </div>
     </form>
 </div>
-<div>
-    <h1 class="titleProducts">Tabla de productos</h1>
+<h1 class="titleProducts">Tabla de productos</h1>
+<div class="grid-container">
     <div>
       <table>
         <thead>
@@ -75,7 +79,65 @@
         </tbody>
       </table>
     </div>
-    
+</div>
+
+<div id="id01" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container">
+      <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+      <div>
+      <h1 class="titleProducts" style="color: black;">Editar productos</h1>
+      <input type="hidden" id="idProductEdir"/>
+    </div>
+      <form id="FormProductsEdit">
+        <div class="inputFormProduct">
+          <input
+          type="text"
+          class="form-input"
+          id="PnombreEdit"
+          name="PnombreEdit"
+          placeholder="Nombre del producto"
+        /></div>
+
+        <div class="inputFormProduct">
+        <input
+          type="text"
+          class="form-input"
+          id="PcostoEdit"
+          name="PcostoEdit"
+          placeholder="Costo"
+        /></div>
+  
+        <div class="inputFormProduct">
+        <input
+          type="text"
+          class="form-input"
+          id="PprecioEdit"
+          name="PprecioEdit"
+          placeholder="Precio"
+        /></div>
+        <div class="inputFormProduct">
+        <input
+          type="text"
+          class="form-input"
+          id="PstockEdit"
+          name="PstockEdit"
+          placeholder="Stock"
+        /></div>
+        <div class="inputFormProduct">
+        <select name="estado" id="pestadoEdit">
+          <option>Estado</option>
+          <option value="A">Activo</option>
+          <option value="I">Inactivo</option></select
+        ></div>
+        <div class="btnForm">
+        <input type="submit" value="Editar" class="btn btn-primary"/>
+        <a href="http://localhost:8000/products.html" class="btn btn-danger">Canceler</a>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
 </div>
 
 
