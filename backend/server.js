@@ -12,6 +12,6 @@ const PORT = process.env.PORT || 8000;
 //routes
 app.get("/registro");
 
-app.listen(PORT , ()=>{
+app.listen(PORT, ()=>{
     console.log(`Listen on port ${PORT}`);
 })
