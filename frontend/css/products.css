@@ -1,0 +1,89 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: auto;
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+a{
+  text-decoration: none;
+  padding:9px 15px 9px 15px!important;
+  margin-left: 10px;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  text-align: center;
+  padding: 8px;
+  color: #fff;
+}
+
+th{
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+}
+
+td{
+  font-size: 15px;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+}
+
+.titleProducts {
+  text-align: center;
+  color: azure;
+  padding: 10px;
+}
+
+.inputFormProduct {
+padding: 8px;
+}
+
+/* modal */
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* icons */
+
+.trashIcon{
+  height: 20px;
+}
+
+.btnForm{
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+
