@@ -1,3 +1,28 @@
+body {
+    margin: 0;
+}
+
+.topnav {
+    background-color: #f2f2f2;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.topnav a{
+    float: left;
+    color: #000;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none; /*hide underline*/
+    font-size: 17;
+}
+
+.topnav-signout {
+    float: right !important;
+}
+
 .btn {
     padding: 7px 15px 7px 15px;
     border-radius: 4px;
@@ -27,3 +52,50 @@
     background-color: rgb(247, 46, 11);
     color: #fff;
 }
+
+/*Modal*/
+ .modal-header {
+    padding: 2px 16px;
+    background-color: #757a75;
+    color: white;
+  }
+  
+.modal-body {
+    padding: 2px 16px;
+}
+
+.modal-buttons {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.close {
+    float: right;
+    cursor: pointer;
+}
+
+.modal-content {
+position: fixed;
+top: 50%;
+left: 50%;
+background-color: #fefefe;
+transform: translate(-50%, -50%);
+margin: 0 auto;
+padding: 0;
+border: 1px solid #888;
+width: 50%;
+max-width: 500px;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+animation-name: animatetop;
+animation-duration: 0.8s;
+}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+} 
