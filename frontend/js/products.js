@@ -104,6 +104,7 @@ const registerData = (e) => {
     registerProductsResponse
   );
   getDataProducts();
+  alert("Producto registrado correctamente");
 };
 
 const editDataProducts = () => {
@@ -143,6 +144,7 @@ window.deleteProducts = (id) => {
     deleteProductsResponse,
     deleteProductsResponse
   );
+  alert("Producto eliminado");
   getDataProducts();
 };
 
