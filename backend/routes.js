@@ -6,14 +6,14 @@ const userController = require("./controllers/userController");
 const productController = require("./controllers/productController");
 
 //Login
-route.post("/login" , loginController.register);
+route.post("/" , loginController.login);
 
 //Products
 route.get("/products" , productController.getView);
 route.post("/products/resgister" , productController.registerProduct);
 route.get("/products/show" , productController.getProducts);
 route.put("/products/:id_producto" , productController.deleteProducts);
-route.put("/products/:id_producto" , productController.editProduct);
+route.put("/products/edit/:id_producto" , productController.editProduct);
 
 //Users
 route.get("/users" , (req, res) => {
