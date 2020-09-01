@@ -3,9 +3,6 @@ const form = document.getElementById("FormProducts");
 const formEdit = document.getElementById("FormProductsEdit");
 const tableProducts = document.getElementById("table_products");
 
-// const deleteProduct = (id) => {
-//   alert(id);
-// };
 
 window.editProducts = function (tag) {
   const jsonData = JSON.parse(tag.dataset.products);

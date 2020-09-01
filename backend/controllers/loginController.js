@@ -1,5 +1,5 @@
 const con = require("../dbConnector");
-
+const path = require('path');
 module.exports = {
   login(req, res) {
     try {
@@ -7,7 +7,7 @@ module.exports = {
       const userLogin = con.query("SELECT USERNAME , PASSWORD FROM usuario WHERE USERNAME = ? AND PASSWORD = ?"
        ,[username , password]);
       if(userLogin){
-        res.json({message: "bienvenido"});
+        res.sendFile(path.join(__dirname,'../../frontend/products.html'));
       }else{
         res.json({message:"Usuario o contraseña incorrectas"});
       }
