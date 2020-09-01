@@ -4,8 +4,8 @@ const Components = {
         const tag = document.getElementById(tagId);
         tag.innerHTML = ( 
             '<nav class="topnav">' +
-                '<a href="/users">Users</a>' +
-                '<a href="/products">Products</a>' +
+                '<a href="http://localhost:8000/users.html">Users</a>' +
+                '<a href="http://localhost:8000/products.html">Products</a>' +
                 '<a href="#" class="topnav-signout">Sign out</a>' +
             '</nav>');
     }

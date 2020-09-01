@@ -16,6 +16,7 @@ const cbOk= (res) => {
     console.log('res: ',res);
     if(res.resp === 'OK'){
         window.localStorage.setItem('usrId', res.usrId);
+        window.localStorage.setItem("usrRol" ,res.usrRol);
         window.location.href= '../products.html';
     }
     else{

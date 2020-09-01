@@ -166,12 +166,17 @@ const listUsers = () => {
 
 let rowToDelete;
 function deleteUser(elem){
-    rowToDelete = elem;
-    const user = {
-        usuario_id: elem.dataset.id
-    }
-
+    const user_rol = localStorage.getItem('usrRol');
+    if(user_rol === "2"){
+      alert("No tiene permisos para eliminar usuarios");
+    }else{
+        rowToDelete = elem;
+        const user = {
+            usuario_id: elem.dataset.id
+        }
+        
     ajax('/users/delete', user, 'POST', HEADERS, cbDeleteOk, cbDeleteError);
+    }
 }
 
 window.listUsers = listUsers;

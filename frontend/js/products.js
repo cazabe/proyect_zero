@@ -2,19 +2,25 @@ import ajax from "./ajax.js";
 const form = document.getElementById("FormProducts");
 const formEdit = document.getElementById("FormProductsEdit");
 const tableProducts = document.getElementById("table_products");
+import Components from './components.js';
 
 
 window.editProducts = function (tag) {
   const jsonData = JSON.parse(tag.dataset.products);
   console.log(jsonData.NOMBRE);
-  
-  document.getElementById("id01").style.display = "block";
-  document.getElementById("PnombreEdit").value = jsonData.NOMBRE;
+  const user_rol = localStorage.getItem('usrRol');
+  if(user_rol === "2"){
+    document.getElementById("id01").style.display = "none";
+    alert("No tiene permisos para editar");
+  }else{
+    document.getElementById("id01").style.display = "block";
+    document.getElementById("PnombreEdit").value = jsonData.NOMBRE;
   document.getElementById("PcostoEdit").value = jsonData.COSTO;
   document.getElementById("PprecioEdit").value = jsonData.PRECIO;
   document.getElementById("PstockEdit").value = jsonData.STOCK;
   document.getElementById("pestadoEdit").value = jsonData.ESTADO;
   document.getElementById("idProductEdir").value = jsonData.PRODUCTO_ID;
+  }
   
 };
 
@@ -27,9 +33,13 @@ const getDataProducts = () => {
     tableProductsResponse,
     tableProductsResponse
   );
+  const user_id = localStorage.getItem('usrId');
+  console.log("user_id" , user_id );
+  document.getElementById("user_id").value = user_id; 
 };
 
 window.onload = function () {
+  Components.Navbar('header');
   getDataProducts();
 };
 
@@ -54,7 +64,7 @@ const tableProductsResponse = (res) => {
       "</td><td>" +
       `<button class="btn btn-danger" onclick="deleteProducts(${
         product.PRODUCTO_ID
-      })"><img class = "trashIcon" src="../img/trash.png"/></button> <button class="btn btn-warning" onclick="editProducts(this)" data-products=\'${JSON.stringify(
+      })"><img class = "trashIcon" src="../img/trash.png"/></button> <button class="btn btn-warning" onclick="editProducts(this)" id="editar" data-products=\'${JSON.stringify(
         product
       )}'\><img class = "trashIcon" src="../img/edit.png"/></button>` +
       "</td></tr>";
@@ -76,15 +86,17 @@ const registerProductsResponse = (res) => {
 const registerData = (e) => {
   e.preventDefault();
 
+  const usuario_id = document.getElementById("user_id").value
   const nombre = document.getElementById("Pnombre").value;
   const costo = document.getElementById("Pcosto").value;
   const precio = document.getElementById("Pprecio").value;
   const stock = document.getElementById("Pstock").value;
   const estado = document.getElementById("pestado").value;
 
-  console.log(nombre, costo, precio, stock, estado);
+  console.log(usuario_id, nombre, costo, precio, stock, estado);
 
   const product = {
+    usuario_id,
     nombre,
     costo,
     precio,
@@ -133,18 +145,32 @@ const editDataProducts = () => {
 
 // Delete producst
 window.deleteProducts = (id) => {
-  ajax(
-    `http://localhost:8000/products/${id}`,
-    null,
-    "PUT",
-    [["Content-type", "application/json"]],
-    deleteProductsResponse,
-    deleteProductsResponse
-  );
-  alert("Producto eliminado");
-  getDataProducts();
+  const user_rol = localStorage.getItem('usrRol');
+  if(user_rol === "2"){
+    alert("No tiene permisos para borrar productos");
+  }else{
+    ajax(
+      `http://localhost:8000/products/${id}`,
+      null,
+      "PUT",
+      [["Content-type", "application/json"]],
+      deleteProductsResponse,
+      deleteProductsResponse
+    );
+    alert("Producto eliminado");
+    getDataProducts();
+  }
+ 
 };
 
 //events
 form.addEventListener("submit", registerData);
 formEdit.addEventListener("submit", editDataProducts);
+
+const disableButton = ()=>{
+  const user_rol = localStorage.getItem('usrRol');
+  if(user_rol === "2"){
+    document.getElementById("editar").classList.add("mystyle");
+    // document.getElementById("myP").style.cursor = "not-allowed";
+  }
+}

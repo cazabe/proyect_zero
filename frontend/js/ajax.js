@@ -14,7 +14,7 @@ const ajax = (url, data, method, headers, callOk, callError) => {
     // Set headers
     if (headers !== null) {
         headers.forEach(h => {
-            xhttp.setRequestHeader(h[0], h[1]);
+            xhttp.setRequestHeader(h[0], h[1],h[3],h[4]);
         });
     }
 
