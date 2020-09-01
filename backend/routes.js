@@ -13,6 +13,9 @@ route.get("/" , (req, res) => {
 });
 
 // Users
+route.get("/users" , (req, res) => {
+    res.sendFile(path.join(__dirname,'../frontend/users.html'));
+});
 route.post("/users/create" , userController.create);
 route.post("/users/update" , userController.update);
 route.post("/users/delete" , userController.delete);
@@ -25,9 +28,5 @@ route.get("/products/show" , productController.getProducts);
 route.put("/products/:id_producto" , productController.deleteProducts);
 route.put("/products/edit/:id_producto" , productController.editProduct);
 
-//Users
-route.get("/users" , (req, res) => {
-    res.sendFile(path.join(__dirname,'../frontend/users.html'));
-});
 
 module.exports = route;

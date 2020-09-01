@@ -34,13 +34,13 @@ module.exports = {
             res.set('Content-type', 'application/json');
             con.query(sql, (err, result) => {
                 if (err) {
-                    res.json({ 'message': `INTERNAL_ERROR: ${err}` });
+                    res.json({ 'SQL': `INTERNAL_ERROR: ${err}` });
                 }
                 res.json(result);
             });
         }
         catch (e) {
-            res.json({ 'message': `INTERNAL_ERROR: ${e}` });
+            res.json({ 'CATCH': `INTERNAL_ERROR: ${e}` });
         }
     },
     update(req, res) {

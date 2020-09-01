@@ -1,0 +1,17 @@
+.login-box {
+    border: solid 1px #000;
+    display: inline-block;
+    padding: 30px;
+    border-radius: 4px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login-box input {
+    margin: 5px;
+    border-radius: 4px;
+    padding: 5px;
+    border: solid 1px #fff2f2;
+}
