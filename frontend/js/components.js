@@ -6,8 +6,10 @@ const Components = {
             '<nav class="topnav">' +
                 '<a href="/users">Users</a>' +
                 '<a href="/products">Products</a>' +
-                '<a href="#" class="topnav-signout">Sign out</a>' +
-            '</nav>');
+                '<a href="#" class="topnav-signout" onclick=\'' +
+                'window.localStorage.removeItem("usrId");window.location.href = "/";\'>Sign out</a>' +
+            '</nav>'
+            );
     }
 }
 

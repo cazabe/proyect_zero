@@ -6,6 +6,14 @@ const HEADERS = [['Content-Type','application/json']];
 
 // On document ready
 document.addEventListener("DOMContentLoaded", function() {
+    const usrId = window.localStorage.getItem('usrId');
+
+    if(usrId === null){
+        // Close session
+        window.localStorage.removeItem('usrId');
+        window.location.href = '/' ;
+    }
+
     Components.Navbar('header');
     listUsers();
 });

@@ -7,13 +7,20 @@ const txtUsername = document.getElementById('username');
 const txtPassword = document.getElementById('password');
 const form = document.getElementById('loginForm');
 
+/*On document ready*/
+document.addEventListener("DOMContentLoaded", function() {
+    const usrId = window.localStorage.getItem('usrId');
+    if(usrId !== null){
+        window.location.href = './products.html';
+    }
+});
+
 const cbError = (res) => {
     alert('Wrong credentials');
 } 
 
 const cbOk= (res) => {
     res = JSON.parse(res); 
-    console.log('res: ',res);
     if(res.resp === 'OK'){
         window.localStorage.setItem('usrId', res.usrId);
         window.location.href= '../products.html';
@@ -25,7 +32,6 @@ const cbOk= (res) => {
 } 
 
 const execLogin = () => {
-    console.log('ejecutado');
     if(txtUsername.value == ''){
         alert('Enter a username');
         return;
