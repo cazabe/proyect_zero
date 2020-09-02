@@ -1,3 +1,8 @@
+body{
+    font-size: 18;
+    color: #fff;
+}
+
 img {
     cursor: pointer;
 }
