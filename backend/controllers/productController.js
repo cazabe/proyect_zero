@@ -11,11 +11,11 @@ module.exports = {
     // res.render('index');
     //date fromat
     let fecha_modificacion = new Date().toISOString().slice(0, 10);
-
-    const { nombre, costo, precio, stock, estado } = req.body;
+    const { usuario_id,nombre, costo, precio, stock, estado } = req.body;
 
     try {
       producto = {
+        usuario_id,
         nombre,
         costo,
         precio,

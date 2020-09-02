@@ -22,6 +22,7 @@ updateClose.onclick = function() {
 
 /* Close modals when clicking screen outside it */
 window.onclick = function(event) {
+    
     if(event.target == createModal){
         createModal.style.display = "none";
     }
@@ -33,12 +34,18 @@ window.onclick = function(event) {
 
 /*Load data in modals's forms*/
 function loadForm(elem, modalId){
-    const data = JSON.parse(elem.dataset.info);
-    const htmlElem = document.getElementById(modalId);
-    htmlElem.querySelector('[data-item="id"]').value = data.USUARIO_ID;
-    htmlElem.querySelector('[data-item="name"]').value = data.NOMBRES;
-    htmlElem.querySelector('[data-item="lName"]').value = data.APELLIDOS;
-    htmlElem.querySelector('[data-item="email"]').value = data.CORREO;
-    htmlElem.querySelector('[data-item="role"]').value = data.ROL_ID;
-    htmlElem.style.display = 'block';
+    const user_rol = localStorage.getItem('usrRol');
+    if(user_rol === "2"){
+      alert("No tiene permisos para editar");
+    }else{
+        const data = JSON.parse(elem.dataset.info);
+        const htmlElem = document.getElementById(modalId);
+        htmlElem.querySelector('[data-item="id"]').value = data.USUARIO_ID;
+        htmlElem.querySelector('[data-item="name"]').value = data.NOMBRES;
+        htmlElem.querySelector('[data-item="lName"]').value = data.APELLIDOS;
+        htmlElem.querySelector('[data-item="email"]').value = data.CORREO;
+        htmlElem.querySelector('[data-item="role"]').value = data.ROL_ID;
+        htmlElem.style.display = 'block';
+    }
+    
 }
