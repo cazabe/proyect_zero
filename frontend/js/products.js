@@ -3,6 +3,7 @@ const form = document.getElementById("FormProducts");
 const formEdit = document.getElementById("FormProductsEdit");
 const tableProducts = document.getElementById("table_products");
 import Components from './components.js';
+import FooterComponents from './footerComponent.js';
 
 
 window.editProducts = function (tag) {
@@ -25,21 +26,24 @@ window.editProducts = function (tag) {
 };
 
 const getDataProducts = () => {
+  const user_id = localStorage.getItem('usrId');
+  console.log(user_id);
   ajax(
-    "http://localhost:8000/products/show",
-    null,
+  `http://localhost:8000/products/show/${user_id}`,
+    user_id,
     "GET",
     [["Content-type", "application/json"]],
     tableProductsResponse,
     tableProductsResponse
   );
-  const user_id = localStorage.getItem('usrId');
+  
   console.log("user_id" , user_id );
   document.getElementById("user_id").value = user_id; 
 };
 
 window.onload = function () {
   Components.Navbar('header');
+  FooterComponents.Footer('footer');
   getDataProducts();
 };
 
@@ -166,11 +170,3 @@ window.deleteProducts = (id) => {
 //events
 form.addEventListener("submit", registerData);
 formEdit.addEventListener("submit", editDataProducts);
-
-const disableButton = ()=>{
-  const user_rol = localStorage.getItem('usrRol');
-  if(user_rol === "2"){
-    document.getElementById("editar").classList.add("mystyle");
-    // document.getElementById("myP").style.cursor = "not-allowed";
-  }
-}

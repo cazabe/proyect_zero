@@ -33,8 +33,11 @@ module.exports = {
   },
 
   async getProducts(req, res) {
+    const id = req.params;
+    const user_id = id.user_id;
+    console.log("usuario id " ,user_id);
     try {
-      const products = await con.query("SELECT * FROM producto", function (
+      const products = await con.query("SELECT * FROM producto WHERE USUARIO_ID = ?", user_id , function (
         error,
         results,
         fields

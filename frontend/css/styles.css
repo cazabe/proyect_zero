@@ -123,3 +123,12 @@ animation-duration: 0.8s;
     color: #fff;
 }
 
+.footerNav {
+    background-color: #f2f2f2;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+

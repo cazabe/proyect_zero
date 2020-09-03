@@ -24,7 +24,7 @@ route.get("/users/read" , userController.read);
 //Products
 route.get("/products" , productController.getView);
 route.post("/products/resgister" , productController.registerProduct);
-route.get("/products/show" , productController.getProducts);
+route.get("/products/show/:user_id" , productController.getProducts);
 route.put("/products/:id_producto" , productController.deleteProducts);
 route.put("/products/edit/:id_producto" , productController.editProduct);
 

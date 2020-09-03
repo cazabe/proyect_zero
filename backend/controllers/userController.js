@@ -1,5 +1,15 @@
 const con = require('../dbConnector');
 const user = require('../models/usuario');
+const nodemailer = require('nodemailer');
+const path = require('path');
+
+const mailContentCreator = {
+    userNotification : (user)=>{
+        let html = `<h1>Buenas tardes cliente ${user.nombres} ${user.apellidos}<h1> <img src="cid:edit"/>`;
+        return html
+    } 
+}
+
 
 module.exports = {
     create(req, res) {
@@ -23,6 +33,34 @@ module.exports = {
                 }
                 res.json({ 'message': 'OK' });
             });
+
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                  user: 'pruebaunonodemailer@gmail.com',
+                  pass: 'Chupayo18'
+                }
+              });
+              
+              const mailOptions = {
+                attachments: [{
+                    filename: 'edit.png',
+                    path: __dirname +'../../../frontend/img/edit.png',
+                    cid: 'edit' 
+                }],
+                from: 'pruebaunonodemailer@gmail.com',
+                to: newUser.correo,
+                subject: 'Sending Email using Node.js',
+                html: mailContentCreator.userNotification(newUser)
+              };
+              
+              transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log('Email sent: ' + info.response);
+                }
+              });
         }
         catch (e) {
             res.json({ 'message': 'INTERNAL_ERROR' + e });
